@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Authenticate using Workload Identity Federation
-      if : True 
+      if : False  
       uses: google-github-actions/auth@v2
       with:
         export_environment_variables: true
@@ -35,6 +35,10 @@ jobs:
         ## https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#create_the_workload_identity_pool_and_provider
         ## https://console.cloud.google.com/iam-admin/workload-identity-pools/pool/undp-test-earth-engine-pool-id?project=undp-test-earth-engine
         ## https://github.com/google-github-actions/auth (using gcloud)
+
+    - uses: 'google-github-actions/auth@v2'
+      with:
+        credentials_json: '${{ secrets.JSON }}'
 
     - run : ls -la 
 
