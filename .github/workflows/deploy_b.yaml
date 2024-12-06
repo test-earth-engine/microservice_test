@@ -44,7 +44,7 @@ jobs:
     - run: 'gcloud auth list --filter=status:ACTIVE --format="value(account)"'
 
     - run : gcloud services list --enabled 
-      #continue-on-error: true 
+      continue-on-error: true 
         
     - name: Deploy to Cloud Functions
       ##  Cloud Functions API ?? 
