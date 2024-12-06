@@ -49,8 +49,19 @@ jobs:
     - run: 'gcloud auth list --filter=status:ACTIVE --format="value(account)"'
 
     - run : gcloud services list --enabled 
-      #continue-on-error: true 
-        
+      continue-on-error: true 
+
+    - run : gcloud functions list --project=undp-test-earth-engine
+      continue-on-error: true 
+
+    - continue-on-error: true 
+      run : |
+        gcloud functions deploy test-function \
+            --runtime=nodejs16 \
+            --trigger-http \
+            --dry-run \
+            --project=undp-test-earth-engine
+          
     - name: Deploy to Cloud Functions
       ##  Cloud Functions API ?? 
       ## 
