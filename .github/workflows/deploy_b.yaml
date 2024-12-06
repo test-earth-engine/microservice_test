@@ -1,0 +1,37 @@
+name: Deploy to Google Cloud Functions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Authenticate using Workload Identity Federation
+      uses: google-github-actions/auth@v2
+      with:
+        workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+        service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+        ## https://console.cloud.google.com/iam-admin/workload-identity-pools
+        ## https://github.com/orgs/community/discussions/139154
+        ## https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#create_the_workload_identity_pool_and_provider
+
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ${{ secrets.PROJECT }}
+
+    - name: Deploy to Cloud Functions
+      run: |
+        gcloud functions deploy flask-example \
+          --entry-point main \
+          --runtime python310 \
+          --trigger-http \
+          --allow-unauthenticated \
+          --region us-central1
