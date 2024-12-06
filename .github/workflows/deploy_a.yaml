@@ -8,15 +8,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - env:
-        GOOGLE_CREDENTIALS: ${{ secrets.JSON }}    
+    - name : Authentification1 
       run: |
-        echo "GOOGLE_CREDENTIALS set"
-        
-      ## https://github.com/google-github-actions/setup-gcloud?tab=readme-ov-file#service-account-key-json
-    - uses: 'google-github-actions/auth@v2'
-      with : 
-        credentials_json: ${{ env.GOOGLE_CREDENTIALS }}
+        ## settings/secrets/actions 
+        ## important!! replace 
+        ## When configuring the json data, exchange " for \" 
+        echo "${{ secrets.JSON }}" > credentials.json
+        gcloud auth activate-service-account --key-file="credentials.json"
+        gcloud config set project ${{ secrets.PROJECT }}
+
         
     - uses: 'google-github-actions/setup-gcloud@v2'
 
