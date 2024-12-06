@@ -29,6 +29,8 @@ jobs:
         ## https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#create_the_workload_identity_pool_and_provider
         ## https://console.cloud.google.com/iam-admin/workload-identity-pools/pool/undp-test-earth-engine-pool-id?project=undp-test-earth-engine
 
+    - run : ls -la 
+
     - name: Set up Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
       with:
