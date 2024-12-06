@@ -30,6 +30,7 @@ jobs:
         ## https://github.com/orgs/community/discussions/139154
         ## https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#create_the_workload_identity_pool_and_provider
         ## https://console.cloud.google.com/iam-admin/workload-identity-pools/pool/undp-test-earth-engine-pool-id?project=undp-test-earth-engine
+        ## https://github.com/google-github-actions/auth (using gcloud)
 
     - run : ls -la 
 
