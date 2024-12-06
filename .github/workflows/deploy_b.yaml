@@ -41,9 +41,8 @@ jobs:
     - run: gcloud info
 
     - run: 'gcloud auth list --filter=status:ACTIVE --format="value(account)"'
-      # service-account-1@my-project.iam.gserviceaccount.com
 
-    - run : gcloud services list --enabled --project="undp-test-earth-engine"
+    - run : gcloud services list --enabled 
       #continue-on-error: true 
         
     - name: Deploy to Cloud Functions
