@@ -26,7 +26,7 @@ jobs:
         workload_identity_provider: projects/743056286656/locations/global/workloadIdentityPools/undp-test-earth-engine-pool-id/providers/pool-id
         service_account: undp-test-earth-engine@undp-test-earth-engine.iam.gserviceaccount.com
         project_id: undp-test-earth-engine
-        token_format: 'access_token'
+        #token_format: 'access_token' ##  "Permission 'iam.serviceAccounts.getAccessToken' denied on resource (or it may not exist).",
         ## https://console.cloud.google.com/iam-admin/workload-identity-pools
         ## https://github.com/orgs/community/discussions/139154
         ## https://gist.github.com/brokedba/b473ce5812f582e164da55d787c3d588
@@ -44,6 +44,8 @@ jobs:
       #continue-on-error: true 
         
     - name: Deploy to Cloud Functions
+      ##  Cloud Functions API ?? 
+      ## 
       continue-on-error: true 
       run: |
         gcloud functions deploy flask-example \
