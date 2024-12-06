@@ -10,7 +10,9 @@ jobs:
     steps:
     - env:
         GOOGLE_CREDENTIALS: ${{ secrets.JSON }}    
-    
+      run: |
+        echo "GOOGLE_CREDENTIALS set"
+        
       ## https://github.com/google-github-actions/setup-gcloud?tab=readme-ov-file#service-account-key-json
     - uses: 'google-github-actions/auth@v2'
       with : 
