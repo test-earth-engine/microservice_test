@@ -16,10 +16,12 @@ jobs:
         echo "${{ secrets.JSON }}" > credentials.json
 
         ## "...Cloud Resource Manager API has not been used in project XYZ before or it is disabled..." 
-        ## -> " Cloud Resource Manager API -> Enable"
+        ## "https://console.cloud.google.com/apis/api/serviceusage.googleapis.com" -> " Cloud Resource Manager API -> Enable"
         gcloud auth activate-service-account --key-file="credentials.json"
         gcloud config set project ${{ secrets.PROJECT }}
         rm credentials.json
+
+    - run : gcloud services list --enabled
 
     - uses: 'google-github-actions/setup-gcloud@v2'
 
