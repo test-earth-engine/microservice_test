@@ -11,16 +11,18 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Authenticate using Workload Identity Federation
       uses: google-github-actions/auth@v2
       with:
-        workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-        service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+        workload_identity_provider: projects/743056286656/locations/global/workloadIdentityPools/undp-test-earth-engine-pool-id/providers/pool-id
+        service_account: undp-test-earth-engine@undp-test-earth-engine.iam.gserviceaccount.com
+        project_id: undp-test-earth-engine
         ## https://console.cloud.google.com/iam-admin/workload-identity-pools
         ## https://github.com/orgs/community/discussions/139154
         ## https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#create_the_workload_identity_pool_and_provider
+        ## https://console.cloud.google.com/iam-admin/workload-identity-pools/pool/undp-test-earth-engine-pool-id?project=undp-test-earth-engine
 
     - name: Set up Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
