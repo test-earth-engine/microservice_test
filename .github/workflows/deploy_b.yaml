@@ -34,12 +34,16 @@ jobs:
 
     - run : ls -la 
 
-    - name: Set up Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@v1
-      #with:
-      #  project_id: ${{ secrets.PROJECT }}
+    - uses: google-github-actions/setup-gcloud@v1
 
+    - run : gcloud services list --enabled
+      continue-on-error: true 
+    
+    - run: gcloud info
+      continue-on-error: true 
+    
     - name: Deploy to Cloud Functions
+      continue-on-error: true 
       run: |
         gcloud functions deploy flask-example \
           --entry-point main \
