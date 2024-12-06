@@ -21,6 +21,8 @@ jobs:
     - name: Authenticate using Workload Identity Federation
       uses: google-github-actions/auth@v2
       with:
+        export_environment_variables: true
+        create_credentials_file : true 
         workload_identity_provider: projects/743056286656/locations/global/workloadIdentityPools/undp-test-earth-engine-pool-id/providers/pool-id
         service_account: undp-test-earth-engine@undp-test-earth-engine.iam.gserviceaccount.com
         project_id: undp-test-earth-engine
