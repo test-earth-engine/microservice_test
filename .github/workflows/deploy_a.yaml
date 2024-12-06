@@ -14,10 +14,13 @@ jobs:
         ## important!! replace 
         ## When configuring the json data, exchange " for \" 
         echo "${{ secrets.JSON }}" > credentials.json
+
+        ## "...Cloud Resource Manager API has not been used in project XYZ before or it is disabled..." 
+        ## -> " Cloud Resource Manager API -> Enable"
         gcloud auth activate-service-account --key-file="credentials.json"
         gcloud config set project ${{ secrets.PROJECT }}
+        rm credentials.json
 
-        
     - uses: 'google-github-actions/setup-gcloud@v2'
 
     - run: 'gcloud info'    
