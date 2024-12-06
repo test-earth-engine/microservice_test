@@ -26,8 +26,10 @@ jobs:
         workload_identity_provider: projects/743056286656/locations/global/workloadIdentityPools/undp-test-earth-engine-pool-id/providers/pool-id
         service_account: undp-test-earth-engine@undp-test-earth-engine.iam.gserviceaccount.com
         project_id: undp-test-earth-engine
+        token_format: 'access_token'
         ## https://console.cloud.google.com/iam-admin/workload-identity-pools
         ## https://github.com/orgs/community/discussions/139154
+        ## https://gist.github.com/brokedba/b473ce5812f582e164da55d787c3d588
         ## https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#create_the_workload_identity_pool_and_provider
         ## https://console.cloud.google.com/iam-admin/workload-identity-pools/pool/undp-test-earth-engine-pool-id?project=undp-test-earth-engine
         ## https://github.com/google-github-actions/auth (using gcloud)
@@ -36,12 +38,11 @@ jobs:
 
     - uses: google-github-actions/setup-gcloud@v1
 
+    - run: gcloud info
+
     - run : gcloud services list --enabled
       continue-on-error: true 
-    
-    - run: gcloud info
-      continue-on-error: true 
-    
+        
     - name: Deploy to Cloud Functions
       continue-on-error: true 
       run: |
