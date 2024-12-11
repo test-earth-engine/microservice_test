@@ -1,8 +1,6 @@
 name: deploy_b
 
 on:
-  push:
-
   workflow_dispatch :
 
 jobs:
