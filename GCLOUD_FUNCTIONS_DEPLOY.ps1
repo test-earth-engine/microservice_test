@@ -22,7 +22,6 @@ function FUNCTION_DEPLOY
 {
     & $GCLOUD functions deploy cloud_function `
     --project $G_PROJECT `
-    --gen2 `
     --runtime python310 `
     --trigger-http `
     --allow-unauthenticated `
@@ -31,5 +30,11 @@ function FUNCTION_DEPLOY
 
 #FUNCTION_DEPLOY
 
-$URL="https://us-central1-undp-population.cloudfunctions.net/cloud_function"
-Invoke-WebRequest -Uri $URL 
+
+$URL="https://us-central1-undp-population.cloudfunctions.net/cloud_function/workflow_dispatch"
+(Invoke-WebRequest -Uri "$URL/abc").Content 
+
+
+$URL="https://us-central1-undp-population.cloudfunctions.net/cloud_function/workflow_dispatch"
+(Invoke-WebRequest -Uri "$URL/def").Content 
+
