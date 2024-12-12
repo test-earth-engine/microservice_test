@@ -27,27 +27,8 @@ function FUNCTION_DEPLOY
     --allow-unauthenticated `
     --region us-central1
 
-    #$URL="https://us-central1-undp-population.cloudfunctions.net/cloud_function"
     #(Invoke-WebRequest -Uri "$URL/workflow_dispatch/test1").Content 
 }
-
-function __API_GACTIONS_STATUS_POST__
-{
-    $json_body = @{ key1 = "value1"; key2 = "value2" } | ConvertTo-Json -Depth 10
-    Write-Output "Sending Body: $json_body"
-
-    $workflow_id = "12289280715"
-    $response = Invoke-WebRequest -Uri "$URL/check_status/$workflow_id" `
-        -Method POST `
-        -ContentType "application/json" `
-        -Body $json_body `
-        -Headers @{ "Accept" = "application/json" }
-    echo "API_GACTIONS_STATUS_POST:", $response 
-
-    #$content = $response.Content | ConvertFrom-Json
-    #echo $content 
-}
-
 
 function API_GACTIONS_DISPATCH 
 {
@@ -102,13 +83,10 @@ function API_GACTIONS_ARTIFACT_POST
     return $content.artifact 
 }
 
-## https://console.cloud.google.com/functions/details/us-central1/cloud_function?project=undp-population
+
 #FUNCTION_DEPLOY
-#$URL="https://us-central1-undp-population.cloudfunctions.net/cloud_function"
+$URL=""
 
-$URL="https://simplest-rest-api-a.glitch.me/"
-
-##$workflow_id = 12300478184
 $workflow_id = API_GACTIONS_DISPATCH -url $URL -workflow_name "simplest_workflow_dispatch"
 echo "workflow_id:'$workflow_id'" 
 
